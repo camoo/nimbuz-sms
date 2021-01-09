@@ -200,8 +200,9 @@ class Base
     {
         if (($oData = json_decode($sBody)) !== null
                     && (json_last_error() === JSON_ERROR_NONE)) {
-            return Lib\Utils::normaliseKeys($oData);
+            return $oData;
         }
+        return null;
     }
 
     /**
@@ -250,7 +251,7 @@ class Base
             throw new NimbuzSmsException(['_error' => $this->getErrors()]);
         }
         try {
-            return $this->decode($oHttpClient->performRequest($sRequestType, $data));
+            return $oHttpClient->performRequest($sRequestType, $data);
         } catch (HttpClientException $err) {
             throw new NimbuzSmsException(['_error' => $err->getMessage()]);
         }

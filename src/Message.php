@@ -36,7 +36,7 @@ class Message extends Base
         try {
             $this->setResourceName('sms');
             $response = $this->execRequest(Client::POST_REQUEST);
-            return new MessageResponse($response->result);
+            return new MessageResponse($response);
         } catch (NimbuzSmsException $err) {
             return new MessageResponse($err->getMessage(), $err->getCode());
         }
@@ -52,7 +52,7 @@ class Message extends Base
         try {
             $this->setResourceName(Constants::RESOURCE_STATUS);
             $response = $this->execRequest(Client::POST_REQUEST, true, Constants::RESOURCE_STATUS);
-            return new MessageResponse($response->result);
+            return new MessageResponse($response);
         } catch (NimbuzSmsException $err) {
             return new MessageResponse($err->getMessage(), $err->getCode());
         }

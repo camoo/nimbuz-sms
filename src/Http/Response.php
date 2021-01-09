@@ -21,9 +21,6 @@ class Response
     /** @var string */
     const BAD_STATUS = 'KO';
 
-    /** @var string */
-    const GOOD_STATUS = 'OK';
-
     /** @var array $data */
     protected $data;
 
@@ -35,7 +32,8 @@ class Response
     {
         $this->statusCode = $statusCode;
         $this->content = $content;
-        $this->data = $this->getJson($content);
+        $response = $this->getJson($content);
+        $this->data = array_key_exists('response', $response)? $response['response'] : $response;
     }
 
     /**
@@ -75,8 +73,7 @@ class Response
             $message = $this->content !== ''? $this->content : 'request failed!';
             return ['status' => static::BAD_STATUS, 'message' => $message];
         }
-        $result = $this->decodeJson($this->content, true);
-        return array_merge(['status' => static::GOOD_STATUS], $result);
+        return $this->decodeJson($this->content, true);
     }
 
     /**

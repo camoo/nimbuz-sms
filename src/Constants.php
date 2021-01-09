@@ -14,7 +14,7 @@ class Constants
     const MIN_PHP_VERSION = 70100;
     const DS = '/';
     const END_POINT_URL = 'https://api.nimbuz.cm';
-    const END_POINT_VERSION = 'ss';
+    const END_POINT_VERSION = 'v1';
     const APP_NAMESPACE = '\\Nimbuz\\Sms\\';
     const RESOURCE_VIEW = 'view';
     const RESOURCE_LIST = 'list';

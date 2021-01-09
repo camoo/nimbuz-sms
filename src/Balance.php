@@ -37,7 +37,7 @@ class Balance extends Base
         try {
             $this->setResourceName(Constants::RESOURCE_BALANCE);
             $response = $this->execRequest(Client::GET_REQUEST, false);
-            return new BalanceResponse(sprintf('{"balance" : %f, "currency" : "Units"}', (float) $response->result));
+            return new BalanceResponse($response);
         } catch (NimbuzSmsException $err) {
             return new BalanceResponse($err->getMessage(), $err->getCode());
         }

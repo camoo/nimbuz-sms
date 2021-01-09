@@ -127,8 +127,7 @@ class Client
                 [$this->hRequestVerbs[$sMethod] => $data, 'headers' => $hHeaders]
             );
             if ($oResponse->getStatusCode() === 200) {
-                $result = ['result' => trim((string) $oResponse->getBody())];
-                return json_encode($result);
+                return trim((string) $oResponse->getBody());
             }
             throw new HttpClientException();
         } catch (RequestException $e) {

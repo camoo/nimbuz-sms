@@ -7,6 +7,7 @@ use \libphonenumber\PhoneNumber;
 use stdClass;
 use Nimbuz\Sms\Exception\NimbuzSmsException;
 use Nimbuz\Sms\Console\BackgroundProcess;
+use Nimbuz\Sms\Response\Message as MessageResponse;
 
 class Utils
 {
@@ -89,26 +90,11 @@ class Utils
         return (string)$ret;
     }
 
-    public static function normaliseKeys($oResponse) : stdClass
+    public static function getMessageKey(MessageResponse $oResponse, string $sKey)
     {
-        $oNewRet = new stdClass();
-        foreach ($oResponse as $sKey => $xVal) {
-            if ($xVal instanceof stdClass || is_array($xVal)) {
-                $xVal = self::normaliseKeys($xVal);
-            }
-            $oNewRet->{str_replace('-', '_', $sKey)} = $xVal;
-        }
-        return $oNewRet;
-    }
-
-    public static function getMessageKey(stdClass $oResponse, string $sKey)
-    {
-        if (property_exists($oResponse, 'sms') && property_exists($oResponse->sms, 'messages')) {
-            foreach ($oResponse->sms->messages as $oMsg) {
-                if (property_exists($oMsg, $sKey)) {
-                    return $oMsg->{$sKey};
-                }
-            }
+        $data = $oResponse->getJson();
+        if (array_key_exists($sKey, $data)) {
+            return $data[$sKey];
         }
         return null;
     }
