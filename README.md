@@ -22,7 +22,7 @@ Package is available on [Packagist](https://packagist.org/packages/camoo/nimbuz-
 you can install it using [Composer](http://getcomposer.org).
 
 ```shell
-composer require etech/sms
+composer require nimbuz/sms
 ```
 Quick Examples
 --------------
