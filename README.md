@@ -4,7 +4,7 @@
   </a>
 </p>
 <p align="center">
-	PHP SMS API Sending SMS via the <strong><em>Etech-Keys SMS gateway</em></strong>
+	PHP SMS API Sending SMS via the <strong><em>Nimbuz-Keys SMS gateway</em></strong>
 </p>
 
 Requirement
@@ -29,7 +29,7 @@ Quick Examples
 
 ##### Sending a SMS
 ```php
-	$oMessage = \Etech\Sms\Message::create('YOUR_LOGIN', 'YOUR_PASSWORD');
+	$oMessage = \Nimbuz\Sms\Message::create('YOUR_LOGIN', 'YOUR_PASSWORD');
 	$oMessage->from ='YourCompany';
 	$oMessage->to = '+237612345678';
 	$oMessage->message ='Hello Kmer World! Déjà vu!';
@@ -39,7 +39,7 @@ Quick Examples
             
 	- Per request, a max of 50 recipients can be entered.
 ```php
-	$oMessage = \Etech\Sms\Message::create('YOUR_LOGIN', 'YOUR_PASSWORD');
+	$oMessage = \Nimbuz\Sms\Message::create('YOUR_LOGIN', 'YOUR_PASSWORD');
 	$oMessage->from ='YourCompany';
 	$oMessage->to =['+237612345678', '+237612345679', '+237612345610'];
 	$oMessage->message ='Hello Kmer World! Déjà vu!';
