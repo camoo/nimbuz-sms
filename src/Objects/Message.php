@@ -72,12 +72,19 @@ final class Message extends Base
      */
     public $programmation;
 
+    /**
+     * Handle a status rapport
+     *
+     * @var string
+     */
+    public $notify_url = null;
+
     public function validatorDefault(Validator $oValidator) : Validator
     {
         $oValidator
             ->rule('required', ['from', 'message', 'to']);
         $oValidator
-            ->rule('optional', ['datacoding','reference', 'programmation']);
+            ->rule('optional', ['datacoding','reference', 'programmation', 'notify_url']);
         $oValidator
             ->rule('in', 'datacoding', ['plain','unicode']);
         $oValidator
@@ -86,6 +93,10 @@ final class Message extends Base
             ->rule('integer', 'programmation');
         $oValidator
             ->rule('min', 'programmation', 30);
+        $oValidator
+            ->rule('lengthMax', 'notify_url', 200);
+        $oValidator
+            ->rule('url', 'notify_url');
         $oValidator
             ->rule(function ($field, $value, $params, $fields) {
                 return file_exists($value);
